@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+
+        <report 
+            id="action_report_general_daily"
+            model="account.report.general.daily"
+            string="Libro Diario"
+            report_type="qweb-pdf"
+            name="l10n_ve_account_report.report_generaldaily"
+            file="l10n_ve_account_report.report_generaldaily"
+            />
+
+        <report
+            id="action_report_general_daily_xls"
+            model="account.report.general.daily"
+            string="Libro Diario"
+            report_type="xlsx"
+            name="l10n_ve_account_report.report_generaldaily.xlsx"
+            file="l10n_ve_account_report.report_generaldaily.xlsx"
+            attachment_use="False"
+        />
+
+
+    </data>
+</odoo>

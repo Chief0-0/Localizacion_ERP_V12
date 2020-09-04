@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!--
+        Retencion IVA Sequences
+        -->
+        
+        <record id="sequence_snc_retiva" model="ir.sequence">
+            <field name="name">Retencion de IVA</field>
+            <field name="code">snc.retiva</field>
+            <field name="prefix">%(range_year)s%(range_month)s</field>
+            <field eval="1" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+            <field eval="True" name="use_date_range"/>
+            <field eval="False" name="company_id"/>
+            <field name="padding">8</field>
+        </record>  
+        
+        <!--
+        Tabla de Retenciones  
+         -->
+        <record id="snc_retiva_c75" model="snc.retiva">
+            <field name="name">Retencion de IVA 75%</field>
+            <field name="ambito">compras</field>
+            <field name="porc_ret">100</field>
+            <field name="formula">base*0.75</field>
+            <field name="sequence_id" ref="l10n_ve_retiva_softnetcorp.sequence_snc_retiva"/>            
+        </record>               
+
+        <record id="snc_retiva_c100" model="snc.retiva">
+            <field name="name">Retencion de IVA 100%</field>
+            <field name="ambito">compras</field>
+            <field name="porc_ret">100</field>
+            <field name="formula">base</field>
+            <field name="sequence_id" ref="l10n_ve_retiva_softnetcorp.sequence_snc_retiva"/>            
+        </record>     
+                
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tributary_unit,l10n_ve_isrl.tributary_unit,model_tributary_unit,,1,1,1,1
+access_sales_isrl,l10n_ve_isrl.sales_isrl,model_sales_isrl,,1,1,1,1
+access_income_tax_line,l10n_ve_isrl.income_tax_line,model_income_tax_line,,1,1,1,1

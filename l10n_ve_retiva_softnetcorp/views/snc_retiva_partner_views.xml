@@ -1,0 +1,79 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="snc_retiva_partners_list">
+      <field name="name">snc.retiva.partners.list</field>
+      <field name="model">snc.retiva.partners</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="fecha_comprobante"/>
+          <field name="partner_id"/>
+          <field name="fecha_contabilizacion"/>   
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="snc_retiva_form">
+      <field name="name">snc.retiva.partners.form</field>
+      <field name="model">snc.retiva.partners</field>
+      <field name="arch" type="xml">
+        <form>
+        	<sheet>
+        		<group>
+    	   		  <group>
+			          <field name="partner_id"/>
+			          <field name="company_id"/>   
+		          </group>
+		          <group>
+			          <field name="name"/>
+			          <field name="fecha_comprobante"/>
+			          <field name="fecha_contabilizacion"/>
+		          </group>
+		        </group>
+		        <notebook>
+		        	<page string="Facturas">
+		        		<group>
+				        	<field name="retiva_line" >
+				        		<tree>
+				        			<field name="invoice_id"/>
+				        			<field name="monto_sujeto"/>
+				        			<field name="porc_retener"/>
+				        			<field name="importe_retenido"/>
+				        			<field name="account_id"/>
+				        		</tree>
+				        		<form>
+				        			<field name="invoice_id"/>
+				        			<field name="monto_sujeto"/>
+				        			<field name="porc_retener"/>
+				        			<field name="importe_retenido"/>
+				        			<field name="account_id"/>				        		
+				        		</form>
+				        	</field>
+			        	</group>
+		        	</page>
+		        </notebook>
+          	</sheet>     
+        </form>
+      </field>
+    </record>    
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="snc_retiva_partners_action_window">
+      <field name="name">Retencion de IVA</field>
+      <field name="res_model">snc.retiva.partners</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- actions -->
+
+    <menuitem name="Retención IVA" id="menu_snc_retiva_partners" 
+    		  parent="account.menu_finance_receivables"
+              action="snc_retiva_partners_action_window"
+              groups="account.group_account_manager,account.group_account_user"
+              sequence="2"/>
+
+  </data>
+</odoo>

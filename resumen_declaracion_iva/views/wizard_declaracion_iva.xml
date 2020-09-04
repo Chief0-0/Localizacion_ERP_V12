@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    	<record id="account_wizard_resumen_iva" model="ir.ui.view">
+       	    <field name="name">Asistente para Resumen de Declaracion de IVA</field>
+            <field name="model">account.wizard.resumen.iva</field>
+    	    <field name="arch" type="xml">
+    	    	 <form string="Reporte de resumen">
+                    <field invisible="1" name="state"/>
+                    <div states="choose">
+                        <group >
+                            <field name="date_from" string="Fecha Inicio" required="1"/>
+                            <field name="date_to" string="Fecha Fin" required="1"/>
+                        </group>
+                    </div>
+                     <div states="choose">
+                         <group cols="4">
+                            <field name="item_21_inic" string="Exedente Creditos Fiscales" />
+                            <field name="item_33_inic" string="Retenciones IVA Acumulados por Descontar"/>
+                         </group>
+                     </div>
+                    <div states="get">
+                        <group>
+                            <field name="name" invisible="1"/>
+                            <field name="report" filename="name" colspan="4"/>
+                        </group>
+                    </div>
+                    <footer states="choose">
+                        <!--<button name="generate_xls_report" string="Exportar Excel" type="object" class="oe_highlight" />-->
+                        <button name="print_facturas" string="Exportar PDF" type="object" class="oe_highlight" />
+                        <button special="cancel" string="Cancel" class="oe_highlight" />
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Cancel" class="oe_highlight" />
+                    </footer>
+                </form>
+    	    </field>
+    	</record>
+</data>
+        <record id="action_account_common_menu_resumen_iva" model="ir.actions.act_window">
+        	<field name="name">Resumen Declaracion IVA</field>
+        	<field name="res_model">account.wizard.resumen.iva</field>
+        	<field name="view_type">form</field>
+        	<field name="view_mode">form</field>
+        	<field name="view_id" ref="account_wizard_resumen_iva"/>
+        	<field name="target">new</field>
+    	</record>
+
+		<menuitem
+                id="account.resumen_iva"
+                name="Resumen Declaracion IVA"
+                parent="l10n_ve_retiva_softnetcorp.menu_snc_impuestos_report"
+                action="action_account_common_menu_resumen_iva"
+        />
+
+
+</odoo>

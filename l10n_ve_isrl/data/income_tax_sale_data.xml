@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Yan Chirino <ychirino@intechmultiservicios.com> -->
+<odoo>
+	<!-- Income Tax Sales -->
+  <record id="income_tax_sale_001" model="account.tax">
+    <field name="name">Sueldos y Salarios</field>
+    <field name="description">001</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type"></field>
+    <field name="amount">0</field>
+    <field name="account_id"></field>
+    <field name="refund_account_id"></field>
+  </record>
+
+   <record id="income_tax_sale_002" model="account.tax">
+    <field name="name">Honorarios Profesionales No Mercantiles (PNR)</field>
+    <field name="description">002</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_003" model="account.tax">
+    <field name="name">Honorarios Profesionales No Mercantiles (PNNR)</field>
+    <field name="description">003</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_004" model="account.tax">
+    <field name="name">Honorarios Profesionales No Mercantiles (PJD)</field>
+    <field name="description">004</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_005" model="account.tax">
+    <field name="name">Honorarios Profesionales No Mercantiles 15% (PJND) </field>
+    <field name="description">005</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_005_1" model="account.tax">
+    <field name="name">Honorarios Profesionales No Mercantiles 22% (PJND)</field>
+    <field name="description">005</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_005_2" model="account.tax">
+    <field name="name">Honorarios Profesionales No Mercantiles 34% (PJND)</field>
+    <field name="description">005</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_006" model="account.tax">
+    <field name="name">Honorarios Profesionales Mancomunados No Mercantiles (PNR)</field>
+    <field name="description">006</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_007" model="account.tax">
+    <field name="name">Honorarios Profesionales Mancomunados No Mercantiles (PNNR)</field>
+    <field name="description">007</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_008" model="account.tax">
+    <field name="name">Honorarios Profesionales Mancomunados No Mercantiles (PJD)</field>
+    <field name="description">008</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_009" model="account.tax">
+    <field name="name">Honorarios Profesionales Mancomunados No Mercantiles 15% (PJND)</field>
+    <field name="description">009</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_009_1" model="account.tax">
+    <field name="name">Honorarios Profesionales Mancomunados No Mercantiles 22% (PJND)</field>
+    <field name="description">009</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_009_2" model="account.tax">
+    <field name="name">Honorarios Profesionales Mancomunados No Mercantiles 34% (PJND)</field>
+    <field name="description">009</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_010" model="account.tax">
+    <field name="name">Honorarios Profesionales pagados a Jinetes, Veterinarios, Preparadores o Entrenadores (PNR)</field>
+    <field name="description">010</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_011" model="account.tax">
+    <field name="name">Honorarios Profesionales pagados a Jinetes, Veterinarios, Preparadores o Entrenadores (PNNR)</field>
+    <field name="description">011</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_012" model="account.tax">
+    <field name="name">Honorarios Profesionales pagados por Clínicas, Hospitales, Centros de Salud, Bufetes, Escritorios, Oficinas, Colegios Profesionales u otra Institución Profesionales No Mercantiles a Profesionales sin relación de dependencia (PNR)</field>
+    <field name="description">012</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_013" model="account.tax">
+    <field name="name">Honorarios Profesionales pagados por Clínicas, Hospitales, Centros de Salud, Bufetes, Escritorios, Oficinas, Colegios Profesionales u otra Institución Profesionales No Mercantiles a Profesionales sin relación de dependencia (PNNR)</field>
+    <field name="description">013</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_014" model="account.tax">
+    <field name="name">Comisiones pagadas por la venta de bienes inmuebles (PNR)</field>
+    <field name="description">014</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_015" model="account.tax">
+    <field name="name">Comisiones pagadas por la venta de bienes inmuebles (PNNR)</field>
+    <field name="description">015</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_016" model="account.tax">
+    <field name="name">Comisiones pagadas por la venta de bienes inmuebles (PJD)</field>
+    <field name="description">016</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_017" model="account.tax">
+    <field name="name">Comisiones pagadas por la venta de bienes inmuebles (PJND)</field>
+    <field name="description">017</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_018" model="account.tax">
+    <field name="name">Cualquier otra Comisión distintas a Remuneraciones accesorias de los sueldos, salarios y demás remuneraciones similares (PNR)</field>
+    <field name="description">018</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_019" model="account.tax">
+    <field name="name">Cualquier otra Comisión distintas a Remuneraciones accesorias de los sueldos, salarios y demás remuneraciones similares (PNNR)</field>
+    <field name="description">019</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_020" model="account.tax">
+    <field name="name">Cualquier otra Comisión distintas a Remuneraciones accesorias de los sueldos, salarios y demás remuneraciones similares (PJD)</field>
+    <field name="description">020</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_021" model="account.tax">
+    <field name="name">Cualquier otra Comisión distintas a Remuneraciones accesorias de los sueldos, salarios y demás remuneraciones similares (PJND)</field>
+    <field name="description">021</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_022" model="account.tax">
+    <field name="name">Intereses de Capitales tomados en préstamo e invertidos en la producción de la renta (PNNR)</field>
+    <field name="description">022</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_023" model="account.tax">
+    <field name="name">Intereses de Capitales tomados en préstamo e invertidos en la producción de la renta 15% (PJND)</field>
+    <field name="description">023</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_023_1" model="account.tax">
+    <field name="name">Intereses de Capitales tomados en préstamo e invertidos en la producción de la renta 22% (PJND)</field>
+    <field name="description">023</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_023_2" model="account.tax">
+    <field name="name">Intereses de Capitales tomados en préstamo e invertidos en la producción de la renta 34% (PJND)</field>
+    <field name="description">023</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_024" model="account.tax">
+    <field name="name">Intereses provenientes de préstamos y otros créditos pagaderos a instituciones financieras constituidas en el exterior y no domiciliadas en el país (PJND)</field>
+    <field name="description">024</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">4.95</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_025" model="account.tax">
+    <field name="name">Intereses pagados por las personas jurídicas o comunidades a cualquier otra persona natural, jurídica o comunidad (PNR)</field>
+    <field name="description">025</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_026" model="account.tax">
+    <field name="name">Intereses pagados por las personas jurídicas o comunidades a cualquier otra persona natural, jurídica o comunidad (PNNR)</field>
+    <field name="description">026</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_027" model="account.tax">
+    <field name="name">Intereses pagados por las personas jurídicas o comunidades a cualquier otra persona natural, jurídica o comunidad (PJD)</field>
+    <field name="description">027</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_028" model="account.tax">
+    <field name="name">Intereses pagados por las personas jurídicas o comunidades a cualquier otra persona natural, jurídica o comunidad 15% (PJND)</field>
+    <field name="description">028</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_028_1" model="account.tax">
+    <field name="name">Intereses pagados por las personas jurídicas o comunidades a cualquier otra persona natural, jurídica o comunidad 22% (PJND)</field>
+    <field name="description">028</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_028_2" model="account.tax">
+    <field name="name">Intereses pagados por las personas jurídicas o comunidades a cualquier otra persona natural, jurídica o comunidad 34% (PJND)</field>
+    <field name="description">028</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_029" model="account.tax">
+    <field name="name">Enriquecimientos Netos de las Agencias Internacionales cuando el pagador sea una personas jurídica o comunidad domiciliada en el país 15% (PJND)</field>
+    <field name="description">029</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_029_1" model="account.tax">
+    <field name="name">Enriquecimientos Netos de las Agencias Internacionales cuando el pagador sea una personas jurídica o comunidad domiciliada en el país 22% (PJND)</field>
+    <field name="description">029</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_029_2" model="account.tax">
+    <field name="name">Enriquecimientos Netos de las Agencias Internacionales cuando el pagador sea una personas jurídica o comunidad domiciliada en el país 34% (PJND)</field>
+    <field name="description">029</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_030" model="account.tax">
+    <field name="name">Enriquecimientos Netos de Gastos de Transporte conformados por fletes pagados a agencias o empresas de transporte internacional constituidas y domiciliadas en el exterior (PNNR)</field>
+    <field name="description">030</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">10</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_031" model="account.tax">
+    <field name="name">Enriquecimientos Netos de Gastos de Transporte conformados por fletes pagados a agencias o empresas de transporte internacional constituidas y domiciliadas en el exterior (PJND)</field>
+    <field name="description">031</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">10</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_032" model="account.tax">
+    <field name="name">Enriquecimientos Netos de Exhibición de Películas, Cine o la Televisión (PNNR)</field>
+    <field name="description">032</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_033" model="account.tax">
+    <field name="name">Enriquecimientos Netos de Exhibición de Películas, Cine o la Televisión 15% (PJND)</field>
+    <field name="description">033</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_033_1" model="account.tax">
+    <field name="name">Enriquecimientos Netos de Exhibición de Películas, Cine o la Televisión 22% (PJND)</field>
+    <field name="description">033</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_033_2" model="account.tax">
+    <field name="name">Enriquecimientos Netos de Exhibición de Películas, Cine o la Televisión 34% (PJND)</field>
+    <field name="description">033</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_034" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por concepto de regalías y demás participaciones análogas (PNNR)</field>
+    <field name="description">034</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_035" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por concepto de regalías y demás participaciones análogas 15% (PJND)</field>
+    <field name="description">035</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_035_1" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por concepto de regalías y demás participaciones análogas 22% (PJND)</field>
+    <field name="description">035</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_035_2" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por concepto de regalías y demás participaciones análogas 34% (PJND)</field>
+    <field name="description">035</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_036" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por las Remuneraciones, Honorarios y pagos análogos por Asistencia Técnica (PNNR)</field>
+    <field name="description">036</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_037" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por las Remuneraciones, Honorarios y pagos análogos por Asistencia Técnica 15% (PJND)</field>
+    <field name="description">037</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_037_1" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por las Remuneraciones, Honorarios y pagos análogos por Asistencia Técnica 22% (PJND)</field>
+    <field name="description">037</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_037_2" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por las Remuneraciones, Honorarios y pagos análogos por Asistencia Técnica 34% (PJND)</field>
+    <field name="description">037</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_038" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por Servicios Tecnológicos utilizados en el país o cedidos a Terceros (PNNR)</field>
+    <field name="description">038</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_039" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por Servicios Tecnológicos utilizados en el país o cedidos a Terceros 15% (PJND)</field>
+    <field name="description">039</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_039_1" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por Servicios Tecnológicos utilizados en el país o cedidos a Terceros 22% (PJND)</field>
+    <field name="description">039</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_039_2" model="account.tax">
+    <field name="name">Enriquecimientos obtenidos por Servicios Tecnológicos utilizados en el país o cedidos a Terceros 34% (PJND)</field>
+    <field name="description">039</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_040" model="account.tax">
+    <field name="name">Enriquecimientos Netos derivados de las Primas de Seguros y Reaseguros (PJND)</field>
+    <field name="description">040</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">10</field>
+   <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_041" model="account.tax">
+    <field name="name">Ganancias Obtenidas por Juegos y Apuestas (PNR)</field>
+    <field name="description">041</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">34</field>
+   <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_042" model="account.tax">
+    <field name="name">Ganancias Obtenidas por Juegos y Apuestas (PNNR)</field>
+    <field name="description">042</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_043" model="account.tax">
+    <field name="name">Ganancias Obtenidas por Juegos y Apuestas (PJD)</field>
+    <field name="description">043</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_044" model="account.tax">
+    <field name="name">Ganancias Obtenidas por Juegos y Apuestas (PJND)</field>
+    <field name="description">044</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_045" model="account.tax">
+    <field name="name">Ganancias Obtenidas por Premios de Loterías y de Hipódromos (PNR)</field>
+    <field name="description">045</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">16</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_046" model="account.tax">
+    <field name="name">Ganancias Obtenidas por Premios de Loterías y de Hipódromos (PNNR)</field>
+    <field name="description">046</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">16</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_047" model="account.tax">
+    <field name="name">Ganancias Obtenidas por Premios de Loterías y de Hipódromos (PJD)</field>
+    <field name="description">047</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">16</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_048" model="account.tax">
+    <field name="name">Ganancias Obtenidas por Premios de Loterías y de Hipódromos (PJND)</field>
+    <field name="description">048</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">16</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_049" model="account.tax">
+    <field name="name">Pagos a Propietarios de Animales de Carrera por concepto de Premios (PNR)</field>
+    <field name="description">049</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_050" model="account.tax">
+    <field name="name">Pagos a Propietarios de Animales de Carrera por concepto de Premios (PNNR)</field>
+    <field name="description">050</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+   <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_051" model="account.tax">
+    <field name="name">Pagos a Propietarios de Animales de Carrera por concepto de Premios (PJD)</field>
+    <field name="description">051</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+   <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_052" model="account.tax">
+    <field name="name">Pagos a Propietarios de Animales de Carrera por concepto de Premios (PJND)</field>
+    <field name="description">052</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_053" model="account.tax">
+    <field name="name">Pagos a Empresas Contratistas o Subcontratistas domiciliadas o no en el país, por la ejecución de obras o de la prestación de servicios en base a valuaciones y ordenes de pago (PNR)</field>
+    <field name="description">053</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">1</field>
+   <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_054" model="account.tax">
+    <field name="name">Pagos a Empresas Contratistas o Subcontratistas domiciliadas o no en el país, por la ejecución de obras o de la prestación de servicios en base a valuaciones y ordenes de pago (PNNR)</field>
+    <field name="description">054</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_055" model="account.tax">
+    <field name="name">Pagos a Empresas Contratistas o Subcontratistas domiciliadas o no en el país, por la ejecución de obras o de la prestación de servicios en base a valuaciones y ordenes de pago (PJD)</field>
+    <field name="description">055</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">2</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_056" model="account.tax">
+    <field name="name">Pagos a Empresas Contratistas o Subcontratistas domiciliadas o no en el país, por la ejecución de obras o de la prestación de servicios en base a valuaciones y ordenes de pago 15% (PJND)</field>
+    <field name="description">056</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_056_1" model="account.tax">
+    <field name="name">Pagos a Empresas Contratistas o Subcontratistas domiciliadas o no en el país, por la ejecución de obras o de la prestación de servicios en base a valuaciones y ordenes de pago 22% (PJND)</field>
+    <field name="description">056</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_056_2" model="account.tax">
+    <field name="name">Pagos a Empresas Contratistas o Subcontratistas domiciliadas o no en el país, por la ejecución de obras o de la prestación de servicios en base a valuaciones y ordenes de pago 34% (PJND)</field>
+    <field name="description">056</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_057" model="account.tax">
+    <field name="name">Pagos de los Administradores de bienes inmuebles a los Arrendadores de los bienes inmuebles situados en el país (PNR)</field>
+    <field name="description">057</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_058" model="account.tax">
+    <field name="name">Pagos de los Administradores de bienes inmuebles a los Arrendadores de los bienes inmuebles situados en el país (PNNR)</field>
+    <field name="description">058</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_059" model="account.tax">
+    <field name="name">Pagos de los Administradores de bienes inmuebles a los Arrendadores de los bienes inmuebles situados en el país (PJD)</field>
+    <field name="description">059</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_060" model="account.tax">
+    <field name="name">Pagos de los Administradores de bienes inmuebles a los Arrendadores de los bienes inmuebles situados en el país 15% (PJND)</field>
+    <field name="description">060</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">15</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+      <record id="income_tax_sale_060" model="account.tax">
+    <field name="name">Pagos de los Administradores de bienes inmuebles a los Arrendadores de los bienes inmuebles situados en el país 22% (PJND)</field>
+    <field name="description">060</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">22</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_060_2" model="account.tax">
+    <field name="name">Pagos de los Administradores de bienes inmuebles a los Arrendadores de los bienes inmuebles situados en el país 34% (PJND)</field>
+    <field name="description">060</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_061" model="account.tax">
+    <field name="name">Cánones de Arrendamientos de Bienes Muebles situados en el país (PNR)</field>
+    <field name="description">061</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_062" model="account.tax">
+    <field name="name">Cánones de Arrendamientos de Bienes Muebles situados en el país (PNNR)</field>
+    <field name="description">062</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_063" model="account.tax">
+    <field name="name">Cánones de Arrendamientos de Bienes Muebles situados en el país (PJD)</field>
+    <field name="description">063</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_064" model="account.tax">
+    <field name="name">Cánones de Arrendamientos de Bienes Muebles situados en el país (PJND)</field>
+    <field name="description">064</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_065" model="account.tax">
+    <field name="name">Pagos de las Empresas Emisoras de Tarjetas de Crédito o Consumo por la Venta de Bienes y servicios, o cualquier otro concepto (PNR)</field>
+    <field name="description">065</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_066" model="account.tax">
+    <field name="name">Pagos de las Empresas Emisoras de Tarjetas de Crédito o Consumo por la Venta de Bienes y servicios, o cualquier otro concepto (PNNR)</field>
+    <field name="description">066</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_067" model="account.tax">
+    <field name="name">Pagos de las Empresas Emisoras de Tarjetas de Crédito o Consumo por la Venta de Bienes y servicios, o cualquier otro concepto (PJD)</field>
+    <field name="description">067</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_068" model="account.tax">
+    <field name="name">Pagos de las Empresas Emisoras de Tarjetas de Crédito o Consumo por la Venta de Bienes y servicios, o cualquier otro concepto (PJND)</field>
+    <field name="description">068</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_069" model="account.tax">
+    <field name="name">Pagos de las Empresas Emisoras de Tarjetas de Crédito por la venta de gasolina en las Estaciones de Servicios (PNR)</field>
+    <field name="description">069</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">1</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_070" model="account.tax">
+    <field name="name">Pagos de las Empresas Emisoras de Tarjetas de Crédito por la venta de gasolina en las Estaciones de Servicios (PJD)</field>
+    <field name="description">070</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">1</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_071" model="account.tax">
+    <field name="name">Pagos por Gastos de Transporte conformados por Fletes (PNR)</field>
+    <field name="description">071</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">1</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_072" model="account.tax">
+    <field name="name">Pagos por Gastos de Transporte conformados por Fletes (PJD)</field>
+    <field name="description">072</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_073" model="account.tax">
+    <field name="name">Pagos de las Empresas de Seguro, las Sociedades de Corretaje de Seguros y las Empresas de Reaseguros por las Prestaciones de Servicios que le son propios (PNR)</field>
+    <field name="description">073</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_074" model="account.tax">
+    <field name="name">Pagos de las Empresas de Seguro, las Sociedades de Corretaje de Seguros y las Empresas de Reaseguros por las Prestaciones de Servicios que le son propios (PJD)</field>
+    <field name="description">074</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_075" model="account.tax">
+    <field name="name">Pagos de las Empresas de Seguro a sus Contratistas por la Reparación de Daños sufridos de sus Asegurados (PNR)</field>
+    <field name="description">075</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_076" model="account.tax">
+    <field name="name">Pagos de las Empresas de Seguro a sus Contratistas por la Reparación de Daños sufridos de sus Asegurados (PJD)</field>
+    <field name="description">076</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_077" model="account.tax">
+    <field name="name">Pagos de las Empresas de Seguros a Clínicas, Hospitales y/o Centros de Salud por la Atención Medica a sus Asegurados (PNR)</field>
+    <field name="description">077</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_078" model="account.tax">
+    <field name="name">Pagos de las Empresas de Seguros a Clínicas, Hospitales y/o Centros de Salud por la Atención Medica a sus Asegurados (PJD)</field>
+    <field name="description">078</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_079" model="account.tax">
+    <field name="name">Cantidades que se paguen por adquisición de Fondos de Comercio situados en el país (PNR)</field>
+    <field name="description">079</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_080" model="account.tax">
+    <field name="name">Cantidades que se paguen por adquisición de Fondos de Comercio situados en el país (PNNR)</field>
+    <field name="description">080</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNNR</field>
+    <field name="amount">34</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_081" model="account.tax">
+    <field name="name">Cantidades que se paguen por adquisición de Fondos de Comercio situados en el país (PJD)</field>
+    <field name="description">081</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_082" model="account.tax">
+    <field name="name">Cantidades que se paguen por adquisición de Fondos de Comercio situados en el país (PJND)</field>
+    <field name="description">082</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_083" model="account.tax">
+    <field name="name">Pagos por Servicios de Publicidad y Propaganda y la Cesión de la Venta de Espacios para tales fines (PNR)</field>
+    <field name="description">083</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">PNR</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_084" model="account.tax">
+    <field name="name">Pagos por Servicios de Publicidad y Propaganda y la Cesión de la Venta de Espacios para tales fines (PJD)</field>
+    <field name="description">084</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_085" model="account.tax">
+    <field name="name">Pagos por Servicios de Publicidad y Propaganda y la Cesión de la Venta de Espacios para tales fines (PJND)</field>
+    <field name="description">085</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPND</field>
+    <field name="amount">5</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+    <record id="income_tax_sale_086" model="account.tax">
+    <field name="name">Pagos por Servicios de Publicidad y Propaganda y la Cesión de la Venta de Espacios para tales fines a Emisoras de Radio (PJD)</field>
+    <field name="description">086</field>
+    <field name="type_tax_use">sale</field>
+    <field name="tax_group_id" ref="l10n_ve_isrl.account_tax_group_withholdings"/>
+    <field name="person_type">LPD</field>
+    <field name="amount">3</field>
+    <field name="account_id" ref="l10n_ve.1_account_activa_account_1151002"/>
+    <field name="refund_account_id" ref="l10n_ve.1_account_activa_account_1151002" />
+  </record>
+
+</odoo>

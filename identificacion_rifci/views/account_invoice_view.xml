@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+     <record model="ir.ui.view" id="account_invoice_form_inh">
+            <field name="name">Account Invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <label for="rif" string="Rif" context="{'default_domain': 'partner'}"/>
+
+                    <div class="address_format" context="{'default_domain': 'partner'}">
+				        <field name="rif" string="Rif"  />
+
+                    </div>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="account_invoice_supplier_form_inh">
+            <field name="name">Account Invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <label for="rif" string="Rif" context="{'default_domain': 'partner'}"/>
+
+                    <div class="address_format" context="{'default_domain': 'partner'}">
+				        <field name="rif" string="Rif"  />
+
+                    </div>
+            </xpath>
+
+        </field>
+    </record>
+ </data>
+</odoo>

@@ -1,0 +1,62 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="snc_retiva_list">
+      <field name="name">snc.retiva.list</field>
+      <field name="model">snc.retiva</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="ambito"/>
+          <field name="porc_ret"/>
+          <field name="formula"/>
+          <field name="account_id"/>
+          <field name="account_refund_id"/>     
+        </tree>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="snc_retiva_form">
+      <field name="name">snc.retiva.form</field>
+      <field name="model">snc.retiva</field>
+      <field name="arch" type="xml">
+        <form>
+        	<sheet>
+        		<group>
+    	   		  <group>
+			          <field name="name"/>
+			          <field name="ambito"/>
+			          <field name="porc_ret" string="Base"/>
+			          <field name="formula"/>
+			          <field name="sequence_id"/>
+                <field name="reten_base"/>
+		          </group>
+		          <group>
+			          <field name="account_id"/>
+			          <field name="account_refund_id"/>
+		          </group>
+		        </group>
+          	</sheet>     
+        </form>
+      </field>
+    </record>    
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="snc_retiva_action_window">
+      <field name="name">Retencion de IVA</field>
+      <field name="res_model">snc.retiva</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- actions -->
+
+    <menuitem name="Retención IVA" id="menu_snc_retiva" 
+    		  parent="account.account_account_menu"
+              action="snc_retiva_action_window"
+              groups="account.group_account_manager,account.group_account_user"
+              sequence="2"/>
+
+  </data>
+</odoo>

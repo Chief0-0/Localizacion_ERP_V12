@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 Yan Chirino <ychirino@intechmultiservicios.com> -->
+<odoo>
+
+  <record model="ir.actions.act_window" id="action_income_tax">
+      <field name="name">Income Taxes</field>
+      <field name="res_model">account.tax</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[
+          ('tax_group_id', '=', 'Withholdings')]</field>
+  </record>
+
+    <delete model="ir.ui.menu" id="account.menu_action_tax_form" />
+
+    <menuitem id="menu_tax_and_isrl" name="Taxes &amp; Income Tax" parent="account.account_account_menu" sequence="2" />
+            <!-- TAX & ISLR Sub-Menu -->
+    <menuitem action="acion_view_tax_tree_inherit" id="menu_action_tax_form_new" parent="menu_tax_and_isrl" sequence="2"/>
+    <menuitem action="action_income_tax" id="menu_action_income_tax" parent="menu_tax_and_isrl" sequence="2"/>
+
+
+</odoo>

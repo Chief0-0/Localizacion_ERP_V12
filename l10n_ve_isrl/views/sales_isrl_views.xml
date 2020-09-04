@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2019 Yan Chirino <ychirino@intechmultiservicios.com> -->
+<odoo>
+
+    <record model="ir.ui.view" id="sales_isrl_form_view">
+      	<field name="name">sales_isrl_form_view</field>
+      	<field name="model">sales.isrl</field>
+      	<field name="arch" type="xml">
+        	<form string="Retention of ISLR" >
+            <header>
+              <button name="validate" class="oe_highlight" string="Validate" type="object"  attrs="{'invisible': ['|', ('state','in', ['done'])]}" />
+              <field name="state" widget="statusbar" statusbar_visible="draft,done" />
+            </header>
+            <sheet>
+               <group>
+                <group>
+                  <field name="name" widget="selection"/>
+                  <field name="company" />
+              </group>
+              <group>
+                  <field name="voucher_date" />
+                  <field name="posting_date" />
+              </group>
+            </group>
+              <hr/>
+                  <field name="income_tax_line_ids" />
+                  <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                      <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                          <label for="amount_total" />
+                      </div>
+                      <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary'/>
+                      <field name="total" invisible="1"/>
+                      <field name="base_field" invisible="1" />
+                  </group>
+                  <hr/>
+              </sheet>
+           	</form>
+    	</field>
+	</record>
+
+	 <record model="ir.ui.view" id="sales_isrl_tree_view">
+      <field name="name">sales_isrl_tree_view</field>
+      <field name="model">sales.isrl</field>
+      <field name="arch" type="xml">
+        <tree string="Sales ISLR">
+            <field name="name" />
+            <field name="voucher_date" />
+            <field name="posting_date" />
+            <field name="state" />
+            <field name="amount_total" />
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sales_isrl">
+      <field name="name">Retention of ISLR</field>
+      <field name="res_model">sales.isrl</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem action="action_sales_isrl" id="menu_action_sales_isrl" parent="account.menu_finance_receivables" />
+
+
+     <record model="ir.ui.view" id="income_tax_line_tree_view">
+      <field name="name">income_tax_line_tree_view</field>
+      <field name="model">income.tax.line</field>
+      <field name="arch" type="xml">
+        <tree string="Income Tax Lines" editable="bottom">
+            <field name="name" />
+            <field name="invoice_id" />
+            <field name="account_id" />
+            <field name="base" />
+            <field name="amount" invisible="1"/>
+            <field name="line_amount" readonly="1" />
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="income_tax_line_form_view">
+      <field name="name">income_tax_line_form_view</field>
+      <field name="model">income.tax.line</field>
+      <field name="arch" type="xml">
+        <form string="Income Tax Lines" >
+            <group>
+              <group>
+                <field name="name" readonly="1" />
+                <field name="invoice_id" readonly="1" />
+                <field name="company_id" readonly="1" />
+            </group>
+            <group>
+              <field name="account_id" readonly="1" />
+              <field name="base" readonly="1" />
+              <field name="amount" readonly="1" />
+            </group>
+          </group>
+        </form>
+      </field>
+    </record>
+
+</odoo>

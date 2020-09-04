@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <!--inherits the default order report and override its details -->
+        <report 
+            id="snc_account_invoices_retiva"
+            model="account.invoice"
+            string="Comprobante de Retención de IVA"
+            report_type="qweb-pdf"
+            name="l10n_ve_retiva_softnetcorp.report_invoice_retiva"
+            file="l10n_ve_retiva_softnetcorp.report_invoice_retiva"
+        />
+    </data>
+</odoo>
+

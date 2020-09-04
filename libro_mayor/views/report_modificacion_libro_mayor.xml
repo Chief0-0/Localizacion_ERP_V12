@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_libro_mayor" model="report.paperformat">
+       <field name="default" eval="True"/>
+            <field name="name">Mod_ledger</field>
+            <field name="format">custom</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">20</field>
+            <field name="margin_right">20</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">20</field>
+            <field name="dpi">110</field>
+            <field name="page_height">180</field>
+            <field name="page_width">90</field>
+    </record>
+    <report
+        id="report_generalledger"
+        model="account"
+        string="Libro Mayor"
+        name="aaccounting_pdf_reports.report_generalledger"
+        file="accounting_pdf_reports.report_generalledger"
+        report_type="qweb-pdf"
+        paperformat="libro_mayor.paperformat_libro_mayor"/>
+
+	<template id="mod_report_generalledger" inherit_id="accounting_pdf_reports.report_generalledger">
+        <xpath expr="//div[@class='page']" position="replace">
+            <div class="page">
+                <div align="center">
+                    <h4>RIF:</h4>
+                </div>
+                <h4>Libro Mayor</h4>
+                    <div>
+                    Periodo &amp;nbsp; <t t-if="data['date_from']"><strong>Desde:</strong> <span t-esc="  data['date_from']"/></t>&amp;nbsp;<t t-if="data['date_to']"><strong>Hasta:</strong> <span t-esc="data  ['date_to']"/></t>
+                    </div>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Fecha</th>
+                            <th>Libro</th>
+                            <th>Empresa</th>
+                            <th>Ref</th>
+                            <th>Asiento</th>
+                            <th>Debe</th>
+                            <th>Haber</th>
+                            <th>Saldo Pendiente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="Accounts" t-as="account">
+                            <tr style="font-weight: bold;">
+                                <td colspan="6">
+                                    <span style="color: white;" t-esc="'..'"/>
+                                    <span t-esc="account['code']"/>
+                                    <span t-esc="account['name']"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="account['debit']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                </td>
+
+                            </tr>
+                            <tr t-foreach="account['move_lines']" t-as="line">
+                                <td><span t-esc="line['ldate']"/></td>
+                                <td><span t-esc="line['lcode']"/></td>
+                                <td><span t-esc="line['partner_name']"/></td>
+                                <td><span t-if="line['lref']" t-esc="line['lref']"/></td>
+                                <td><span t-esc="line['move_name']"/></td>
+                                <td class="text-right">
+                                    <span t-esc="line['debit']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="line['credit']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="line['balance']" t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

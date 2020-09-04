@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <report
+        id="report_action_set_withholdings_isrl"
+        name="l10n_ve_isrl.set_withholdings_isrl_report"
+        string="XML ISLR Report"
+        report_type="qweb-xml"
+        model="account.invoice.tax"
+        menu="False"/>
+    <template id="set_withholdings_isrl_report">
+        <t t-call="report_xml.utf8_header">
+            <RelacionRetencionesISLR >
+                <DetalleRetencion t-foreach="docs" t-as="r">
+                    <RifRetenido t-esc="r.invoice_id.partner_id.vat" />
+                    <NumeroFactura t-esc="r.invoice_id.invoice_number"/>
+                    <NumeroControl t-esc="r.invoice_id.supplier_control_number"/>
+                    <FechaOperacion t-esc="r.invoice_id.date_invoice"/>
+                    <CodigoConcepto t-esc="r.tax_id.description"/>
+                    <MontoOperacion t-esc="r.subject_amount"/>
+                    <PorcentajeRetencion t-esc="r.tax_id.amount" />
+                </DetalleRetencion>
+            </RelacionRetencionesISLR>
+        </t>
+    </template>
+
+    </data>
+</odoo>

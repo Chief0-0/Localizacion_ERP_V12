@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="view_partner_form_inh" model="ir.ui.view">
+        <field name="name">res.partner.inh</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            
+                <xpath expr="//field[@name='vat']" position="replace">
+                   
+                 </xpath>
+
+
+            <xpath expr="//label[@for='street']" position="before">
+
+                <field name="tipo" string="Tipo" style="width: 100%" placeholder="Seleccione" />
+
+                <label for="vat" string="Identificacion" context="{'default_domain': 'partner'}"/>
+
+                    <div class="address_format" context="{'default_domain': 'partner'}">
+				        <field name="vat" string="Identificacion" style="width: 100%" placeholder="000000000000" attrs="{'required': True}" />
+                    </div>
+            </xpath>
+
+            <xpath expr="//field[@name='company_type']" position="replace">
+                <field name="company_type" options="{'horizontal': true}" class="oe_edit_only" widget="radio"/>
+            </xpath>
+
+
+        </field>
+    </record>
+ </data>
+</odoo>
+
+
+
+      <!--   </xpath>
+
+
+            <xpath expr="//field[@name='category_id']" position="attributes">
+            <attribute name = "invisible">1</attribute>
+            </xpath>
+
+
+
+
+           <xpath expr="//field[@name='lang']" position="after">
+            <label for="category_id" string="Etiquetas"/>
+            <div class="address_format" context="{'default_domain': 'partner'}" >
+                <field name="category_id" widget="many2many_tags" placeholder="Etiquetas..." options="{'no_create_edit': True}"/>
+            </div>
+
+           </xpath>
+ -->
+
+   
+

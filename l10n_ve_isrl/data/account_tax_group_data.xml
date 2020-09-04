@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Yan Chirino <ychirino@intechmultiservicios.com> -->
+<odoo>
+
+  <record id="account_tax_group_withholdings" model="account.tax.group">
+    <field name="name">Withholdings</field>
+  </record>
+
+</odoo>

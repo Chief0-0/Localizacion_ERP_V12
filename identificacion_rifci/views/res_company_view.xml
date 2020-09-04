@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="view_company_form_inh" model="ir.ui.view">
+            <field name="name">res.company.form.inh</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='vat']" position="replace">
+                   
+                 </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                 <field name="tipo" string="Tipo" style="width: 100%" placeholder="Seleccione" />
+                    <div class="address_format" >
+				        <field name="vat" string="Identificacion" style="width: 100%" placeholder="000000000000" attrs="{'required': True}"  />
+                    </div>
+            </xpath>
+
+
+        </field>
+    </record>
+ </data>
+</odoo>

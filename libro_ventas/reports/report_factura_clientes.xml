@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+      <record id="paperformat_libro_ventas" model="report.paperformat">
+
+       <field name="default" eval="True"/>
+        <field name="name">A4 Landscape Account</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">400</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">12</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">9</field>
+        <field name="dpi">110</field>
+      </record>
+
+        <report
+          id="libro_factura_clientes"
+          model="account.wizard.libro.ventas"
+          string="Facturas de Clientes"
+          report_type="qweb-pdf"
+          name="libro_ventas.reporte_factura_clientes"
+          paperformat="libro_ventas.paperformat_libro_ventas"
+          />
+
+
+          <template id="reporte_factura_clientes" name="">
+             <t t-call="web.html_container">
+
+              <t t-foreach="docs" t-as="o">
+                  <t t-call="web.external_layout">
+                      <div class="page">
+                        <br/>
+                        <br/>
+                        <table class="table table-condensed ">
+                          <thead>
+                            <div>
+                              <h1>Libro de Ventas</h1>
+                              <h9>
+                                <div>
+                                    <p>Razón Social: <span t-field="o.company_id.name"></span></p>
+                                </div>
+                                <div>
+                                    <p>RIF: <span t-field="o.company_id.vat"></span></p>
+                                </div>
+                                <div>
+                                    <p>Direccion Fiscal: <span t-field="o.company_id.street"> </span> <t t-esc="o.company_id.city" /> <t t-esc="o.company_id.state_id.name"/> <t t-esc="o.company_id.zip" /> <t t-esc="o.company_id.country_id.name" /></p>
+                                </div>
+                                <div>
+                                <p>Período: Desde:<span t-field="o.date_from"></span> &amp;nbsp;Hasta:<span t-field="o.date_to"></span></p>
+                                </div>
+                              </h9>
+                            </div>
+                            <tr class="text-center">
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <th colspan="3"><p>Ventas Internas o Exportacion Gravada</p></th>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr class="text-center">
+			        <th>#</th>
+                                <th>Fecha de Documento</th>
+                                <th style="width:60px">       RIF       </th>
+                                <th>Nombre Razón Social</th>
+                                <th>Número de Planilla de Exportación</th>
+                                <th>Nro Factura / Entrega</th>
+                                <th>Nro. de Control</th>
+                                <th>Número nota de debito</th>
+                                <th>Número de nota de Crédito</th>
+                                <th>Nro. Factura Afectada</th>
+                                <th>Ventas Incluyendo IVA</th>
+                                <th>Ventas Internas o Exportaciones No Gravadas</th>
+                                <th>Ventas Internas o Exportaciones Exoneradas</th>
+                                <th>Base Imponible</th>
+                                <th>% Alicuota</th>
+                                <th>Impuesto IVA</th>
+                                <th>IVA Retenido (Comprador)</th>
+                                <th>Nro. Comprobante de Retención</th>
+                                <th>Fecha comp</th>
+
+                            </tr>
+                          </thead>
+                          <tbody class="table table-bordered">
+
+                            <t t-set="cont_execto" t-value="0"/>
+
+                            <t t-set="Total_con_IVA" t-value="0"/>
+                            <t t-set="t_imponible" t-value="0"/>
+                            <t t-set="tot_exentas" t-value="0"/>
+                            <t t-set="total_iva" t-value="0"/>
+                            <t t-set="reten_iva_total" t-value="0"/>
+
+                            <t t-set="ceros" t-value="0"/>
+                            <t t-set="contador" t-value="1"/>
+
+                            <t t-set="por_alicuita" t-value="0"/>
+
+                            <t t-set="tax_reducido" t-value="0"/>
+                            <t t-set="base_reducido" t-value="0"/>
+                            <t t-set="ret_general" t-value="0"/>
+
+                            <t t-set="tax_general" t-value="0"/>
+                            <t t-set="base_general" t-value="0"/>
+                            <t t-set="ret_reducido" t-value="0"/>
+
+                            <t t-set="base_genel_mas_adicional" t-value="0"/>
+                            <t t-set="tax_genel_mas_adicional" t-value="0"/>
+                            <t t-set="ret_genel_mas_adicional" t-value="0"/>
+
+
+                            <t t-foreach="o.facturas_ids.sorted(key=lambda x: x.date_invoice)" t-as="factura">
+
+                               <t t-set="post_exectas" t-value="0"/>
+                               <t t-set="exent_p_fac" t-value="0"/>
+                               <t t-set="por_ali_0" t-value="0.00"/>
+
+                               <t t-set="por_ali_16" t-value="0.00"/>
+                               <t t-set="por_reten_16" t-value="0.00"/>
+                               <t t-set="base_16" t-value="0"/>
+                               <t t-set="tax_16" t-value="0"/>
+                               <t t-set="tot_comp_p_iva_16" t-value="0"/>
+                               <t t-set="ret_16" t-value="0"/>
+                               <t t-set="cont_16" t-value="0"/>
+
+                               <t t-set="por_ali_12" t-value="0.00"/>
+                               <t t-set="por_reten_12" t-value="0.00"/>
+                               <t t-set="base_12" t-value="0"/>
+                               <t t-set="tax_12" t-value="0"/>
+                               <t t-set="tot_comp_p_iva_12" t-value="0"/>
+                               <t t-set="ret_12" t-value="0"/>
+                               <t t-set="cont_12" t-value="0"/>
+
+                               <t t-set="por_ali_8" t-value="0.00"/>
+                               <t t-set="por_reten_8" t-value="0.00"/>
+                               <t t-set="base_8" t-value="0"/>
+                               <t t-set="tax_8" t-value="0"/>
+                               <t t-set="tot_comp_p_iva_8" t-value="0"/>
+                               <t t-set="ret_8" t-value="0"/>
+                               <t t-set="cont_8" t-value="0"/>
+
+                               <t t-set="por_ali_27" t-value="0.00"/>
+                               <t t-set="por_reten_27" t-value="0.00"/>
+                               <t t-set="base_27" t-value="0"/>
+                               <t t-set="tax_27" t-value="0"/>
+                               <t t-set="tot_comp_p_iva_27" t-value="0"/>
+                               <t t-set="ret_27" t-value="0"/>
+                               <t t-set="cont_27" t-value="0"/>
+
+                               <t t-set="por_ali_31" t-value="0.00"/>
+                               <t t-set="por_reten_31" t-value="0.00"/>
+                               <t t-set="base_31" t-value="0"/>
+                               <t t-set="tax_31" t-value="0"/>
+                               <t t-set="tot_comp_p_iva_31" t-value="0"/>
+                               <t t-set="ret_31" t-value="0"/>
+                               <t t-set="cont_31" t-value="0"/>
+
+                               <!--Valores para montos totales y exentos-->
+                               <t t-set="ids_accounts" t-value="factura.id"/> 
+
+                               <t t-foreach="factura.invoice_line_ids" t-as="l">
+
+                                  <t t-if="l.invoice_id.id == ids_accounts">
+                                     <t t-if="(l.invoice_line_tax_ids.amount == 0) or (l.invoice_line_tax_ids.amount != 0)">
+
+                                        <t t-if="factura.origin == 0">
+                                            <t t-if="l.invoice_line_tax_ids.amount == 0">
+
+                                                <!--Exectas-->
+                                                <t t-set="exent_p_fac" t-value="exent_p_fac+l.price_subtotal"/>
+
+                                                <t t-set="por_ali_0" t-value="l.invoice_line_tax_ids.amount"/>
+
+                                                <t t-set="tot_exentas" t-value="l.price_subtotal+tot_exentas"/>
+                                                <t t-set="post_exectas" t-value="1"/>
+                                            </t>
+                                            <t t-elif="l.invoice_line_tax_ids.amount != 0">
+
+                                               <!--Calculo de IVA-->
+                                                <t t-set="amount_iva" t-value="((l.price_subtotal*l.invoice_line_tax_ids.amount)/100)"/>
+
+                                               <!--Calculos de Retencion-->
+                                                <t t-set="reten_iva" t-value="((amount_iva*factura.retiva_id.porc_ret)/100)"/>
+
+                                               <!--calculo total compras con iva por producto de cada factura-->
+                                                <t t-set="comp_iva" t-value="(l.price_subtotal+amount_iva)"/>
+
+                                               <!--IVA General-->
+                                                <t t-if = "l.invoice_line_tax_ids.amount == 16" >
+                                                   <t t-set="por_ali_16" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_16" t-value="base_16+l.price_subtotal"/>
+                                                   <t t-set="tax_16" t-value="tax_16+amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_16" t-value="tot_comp_p_iva_16+comp_iva"/>
+                                                   <t t-set="por_reten_16" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_16" t-value="ret_16+reten_iva"/>
+                                                   <t t-set="cont_16" t-value="1"/>
+
+                                                   <t t-set="base_general" t-value="base_general+l.price_subtotal"/>
+                                                   <t t-set="tax_general" t-value="tax_general+amount_iva"/>
+                                                   <t t-set="ret_general" t-value="ret_general+reten_iva"/>
+                                                </t>
+                                                <t t-elif = "l.invoice_line_tax_ids.amount == 12" >
+                                                   <t t-set="por_ali_12" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_12" t-value="base_12+l.price_subtotal"/>
+                                                   <t t-set="tax_12" t-value="tax_12+amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_12" t-value="tot_comp_p_iva_12+comp_iva"/>
+                                                   <t t-set="por_reten_12" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_12" t-value="ret_12+reten_iva"/>
+                                                   <t t-set="cont_12" t-value="1"/>
+
+                                                   <t t-set="base_general" t-value="base_general+l.price_subtotal"/>
+                                                   <t t-set="tax_general" t-value="tax_general+amount_iva"/>
+                                                   <t t-set="ret_general" t-value="ret_general+reten_iva"/>
+                                                </t>
+                                                <t t-elif = "l.invoice_line_tax_ids.amount == 8" ><!--IVA Reducido-->
+                                                   <t t-set="por_ali_8" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_8" t-value="base_8+l.price_subtotal"/>
+                                                   <t t-set="tax_8" t-value="tax_8+amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_8" t-value="tot_comp_p_iva_8+comp_iva"/>
+                                                   <t t-set="por_reten_8" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_8" t-value="ret_8+reten_iva"/>
+                                                   <t t-set="cont_8" t-value="1"/>
+
+                                                   <t t-set="base_reducido" t-value="base_reducido+l.price_subtotal"/>
+                                                   <t t-set="tax_reducido" t-value="tax_reducido+amount_iva"/>
+                                                   <t t-set="ret_reducido" t-value="ret_reducido+reten_iva"/>
+                                                </t>
+                                                <t t-elif = "l.invoice_line_tax_ids.amount == 27" ><!--IVA General + adicional 16% + 15%-->
+                                                   <t t-set="por_ali_27" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_27" t-value="base_27+l.price_subtotal"/>
+                                                   <t t-set="tax_27" t-value="tax_27+amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_27" t-value="tot_comp_p_iva_27+comp_iva"/>
+                                                   <t t-set="por_reten_27" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_27" t-value="ret_27+reten_iva"/>
+                                                   <t t-set="cont_27" t-value="1"/>
+
+                                                   <t t-set="base_genel_mas_adicional" t-value="base_genel_mas_adicional+l.price_subtotal"/>
+                                                   <t t-set="tax_genel_mas_adicional" t-value="tax_genel_mas_adicional+amount_iva"/>
+                                                   <t t-set="ret_genel_mas_adicional" t-value="ret_genel_mas_adicional+reten_iva"/>
+                                                </t>
+                                                <t t-elif = "l.invoice_line_tax_ids.amount == 31" ><!--IVA General + adicional 16% + 15%-->
+                                                   <t t-set="por_ali_31" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_31" t-value="base_31+l.price_subtotal"/>
+                                                   <t t-set="tax_31" t-value="tax_31+amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_31" t-value="tot_comp_p_iva_31+comp_iva"/>
+                                                   <t t-set="por_reten_31" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_31" t-value="ret_31+reten_iva"/>
+                                                   <t t-set="cont_31" t-value="1"/>
+
+                                                   <t t-set="base_genel_mas_adicional" t-value="base_genel_mas_adicional+l.price_subtotal"/>
+                                                   <t t-set="tax_genel_mas_adicional" t-value="tax_genel_mas_adicional+amount_iva"/>
+                                                   <t t-set="ret_genel_mas_adicional" t-value="ret_genel_mas_adicional+reten_iva"/>
+                                                </t>
+
+                                               <!--total Base Imponible + iva-->
+                                                <t t-set="Total_con_IVA" t-value="comp_iva+Total_con_IVA"/>
+
+                                               <!--total Base Imponible-->
+                                                <t t-set="t_imponible" t-value="t_imponible+l.price_subtotal"/>
+
+                                               <!--Impuesto IVA-->
+                                                <t t-set="total_iva" t-value="total_iva+amount_iva"/>
+
+                                               <!--Retencion de IVA-->
+                                                <t t-set="reten_iva_total" t-value="reten_iva_total+reten_iva"/>
+
+                                            <!--condicion de amounr != 0-->
+                                            </t>
+                                        <!--condicion de origin == 0-->
+                                        </t>
+
+                                        <t t-else="factura.origin != 0">
+                                            <t t-if="l.invoice_line_tax_ids.amount == 0">
+                                                <!--Exectas-->
+                                                <t t-set="exent_p_fac" t-value="exent_p_fac-l.price_subtotal"/>
+
+                                                <t t-set="por_ali_0" t-value="l.invoice_line_tax_ids.amount"/>
+
+                                                <t t-set="tot_exentas" t-value="tot_exentas-l.price_subtotal"/>
+                                                <t t-set="post_exectas" t-value="1"/>
+
+                                            </t>
+                                            <t t-elif="l.invoice_line_tax_ids.amount != 0">
+
+                                               <!--Calculo de IVA-->
+                                                <t t-set="amount_iva" t-value="((l.price_subtotal*l.invoice_line_tax_ids.amount)/100)"/>
+
+                                               <!--Calculos de Retencion-->
+                                                <t t-set="reten_iva" t-value="((amount_iva*factura.retiva_id.porc_ret)/100)"/>
+
+                                               <!--calculo total compras con iva por producto de cada factura-->
+                                                <t t-set="comp_iva" t-value="(l.price_subtotal+amount_iva)"/>
+
+                                               <!--IVA General-->
+                                                <t t-if = "l.invoice_line_tax_ids.amount == 16" >
+                                                   <t t-set="por_ali_16" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_16" t-value="base_16-l.price_subtotal"/>
+                                                   <t t-set="tax_16" t-value="tax_16-amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_16" t-value="tot_comp_p_iva_16-comp_iva"/>
+                                                   <t t-set="por_reten_16" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_16" t-value="ret_16-reten_iva"/>
+                                                   <t t-set="cont_16" t-value="1"/>
+
+                                                   <t t-set="base_general" t-value="base_general-l.price_subtotal"/>
+                                                   <t t-set="tax_general" t-value="tax_general-amount_iva"/>
+                                                   <t t-set="ret_general" t-value="ret_general-reten_iva"/>
+                                                </t>
+                                                <t t-elif = "l.invoice_line_tax_ids.amount == 12" >
+                                                   <t t-set="por_ali_12" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_12" t-value="base_12-l.price_subtotal"/>
+                                                   <t t-set="tax_12" t-value="tax_12-amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_12" t-value="tot_comp_p_iva_12-comp_iva"/>
+                                                   <t t-set="por_reten_12" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_12" t-value="ret_12-reten_iva"/>
+                                                   <t t-set="cont_12" t-value="1"/>
+
+                                                   <t t-set="base_general" t-value="base_general-l.price_subtotal"/>
+                                                   <t t-set="tax_general" t-value="tax_general-amount_iva"/>
+                                                   <t t-set="ret_general" t-value="ret_general-reten_iva"/>
+                                                </t>
+                                                <t t-elif = "l.invoice_line_tax_ids.amount == 8" ><!--IVA Reducido-->
+                                                   <t t-set="por_ali_8" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_8" t-value="base_8-l.price_subtotal"/>
+                                                   <t t-set="tax_8" t-value="tax_8-amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_8" t-value="tot_comp_p_iva_8-comp_iva"/>
+                                                   <t t-set="por_reten_8" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_8" t-value="ret_8-reten_iva"/>
+                                                   <t t-set="cont_8" t-value="1"/>
+
+                                                   <t t-set="base_reducido" t-value="base_reducido-l.price_subtotal"/>
+                                                   <t t-set="tax_reducido" t-value="tax_reducido-amount_iva"/>
+                                                   <t t-set="ret_reducido" t-value="ret_reducido-reten_iva"/>
+                                                </t>
+                                                <t t-elif = "l.invoice_line_tax_ids.amount == 27" ><!--IVA General - adicional 16% - 15%-->
+                                                   <t t-set="por_ali_27" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_27" t-value="base_27-l.price_subtotal"/>
+                                                   <t t-set="tax_27" t-value="tax_27-amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_27" t-value="tot_comp_p_iva_27-comp_iva"/>
+                                                   <t t-set="por_reten_27" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_27" t-value="ret_27-reten_iva"/>
+                                                   <t t-set="cont_27" t-value="1"/>
+
+                                                   <t t-set="base_genel_mas_adicional" t-value="base_genel_mas_adicional-l.price_subtotal"/>
+                                                   <t t-set="tax_genel_mas_adicional" t-value="tax_genel_mas_adicional-amount_iva"/>
+                                                   <t t-set="ret_genel_mas_adicional" t-value="ret_genel_mas_adicional-reten_iva"/>
+                                                </t>
+                                                <t t-elif = "l.invoice_line_tax_ids.amount == 31" ><!--IVA General - adicional 16% - 15%-->
+                                                   <t t-set="por_ali_31" t-value="l.invoice_line_tax_ids.amount"/>
+                                                   <t t-set="base_31" t-value="base_31-l.price_subtotal"/>
+                                                   <t t-set="tax_31" t-value="tax_31-amount_iva"/>
+                                                   <t t-set="tot_comp_p_iva_31" t-value="tot_comp_p_iva_31-comp_iva"/>
+                                                   <t t-set="por_reten_31" t-value="factura.retiva_id.porc_ret"/>
+                                                   <t t-set="ret_31" t-value="ret_31-reten_iva"/>
+                                                   <t t-set="cont_31" t-value="1"/>
+
+                                                   <t t-set="base_genel_mas_adicional" t-value="base_genel_mas_adicional-l.price_subtotal"/>
+                                                   <t t-set="tax_genel_mas_adicional" t-value="tax_genel_mas_adicional-amount_iva"/>
+                                                   <t t-set="ret_genel_mas_adicional" t-value="ret_genel_mas_adicional-reten_iva"/>
+                                                </t>
+
+                                               <!--total Base Imponible - iva-->
+                                                <t t-set="Total_con_IVA" t-value="Total_con_IVA-comp_iva"/>
+
+                                               <!--total Base Imponible-->
+                                                <t t-set="t_imponible" t-value="t_imponible-l.price_subtotal"/>
+
+                                               <!--Impuesto IVA-->
+                                                <t t-set="total_iva" t-value="total_iva-amount_iva"/>
+
+                                               <!--Retencion de IVA-->
+                                                <t t-set="reten_iva_total" t-value="reten_iva_total-reten_iva"/>
+
+                                            <!--condicion de amounr != 0-->
+                                            </t>
+                                        <!--condicion de origin != 0-->
+                                        </t>
+                                      <!--fin de condicion (l.invoice_line_tax_ids.amount == 0) or (l.invoice_line_tax_ids.amount != 0)-->
+                                     </t>
+                                   <!--fin de condicion l.invoice_id.id == ids_accounts-->
+                                  </t>
+                                <!--fin de condicion t-foreach="factura.invoice_line_ids" t-as="l"-->
+                               </t>
+
+                               <t t-set="cont_impri" t-value=" cont_8 + cont_12 + cont_16 + cont_27 + cont_31 + post_exectas"/>
+
+                               <t t-foreach="cont_impri" t-as="l">
+                                <tr class="text-center">
+
+                                    <td> <span t-esc="contador"/> </td>
+
+                                        <!--Fecha de documento-->
+                                        <td class="text-center">
+                                          <span t-field="factura.date_invoice"/>
+                                        </td>
+
+                                        <!--Rif-->
+                                        <td class="text-center">
+                                          <span t-field="factura.vat"/>
+                                        </td>
+
+                                        <!--Razon social-->
+                                        <td class="text-center">
+                                          <span t-field="factura.partner_id"/>
+                                        </td>
+
+                                        <!--numero de planilla de exportacion-->
+                                        <td> <p></p> </td>
+
+                                        <!--numero de factura /entrega-->
+                                        <td class="text-center">
+                                            <t t-if="factura.origin == 0">
+                                              <span t-field="factura.move_id"/>
+                                            </t>
+                                            <t t-else="factura.origin > 0">
+                                              <p></p>
+                                            </t>
+                                        </td>
+
+                                        <!--numero de control-->
+                                        <td class="text-center">
+                                          <span t-field="factura.invoice_sequence"/>
+                                        </td>
+
+                                       <!--numero nota de debito-->
+                                        <td class="text-center">
+
+                                        </td>
+
+                                        <td> <!--numero de nota de credito-->
+                                            <t t-if="factura.origin == 0 ">
+                                              <p></p>
+                                            </t>
+                                            <t t-else="factura.origin != 0 ">
+                                              <span t-field="factura.move_id"/>
+                                            </t>
+                                        </td>
+
+                                       <!--numero de factura afectada-->
+                                        <td class="text-center">
+                                            <t t-if="factura.origin == 0">
+                                              <p></p>
+                                            </t>
+                                            <t t-else="factura.origin != 0">
+                                              <span t-field="factura.origin"/>
+                                            </t>
+                                        </td>
+
+                                        <t t-if="post_exectas == 1">
+                                           <!--Total compras con IVA-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                            <!--Exectas-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(exent_p_fac)"/>
+                                            </td>
+
+                                            <!--Exoneradas-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                            <!--Base imponible-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                            <!--% Alicuota-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(por_ali_0)"/>
+                                            </td>
+
+                                            <!--Impuesto IVA-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                            <!--Retencion de IVA-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                            <t t-foreach="o.retiva_ids" t-as="retiva">
+                                              <t t-if="retiva.invoice_id.id == factura.id">
+
+                                                <!--Nro COMPROBANTE DE RETENCION-->
+                                                <t t-if="retiva.retiva_partner_id.name == 0">
+                                                    <td><p></p></td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td class="text-center">
+                                                      <span t-field="retiva.retiva_partner_id.name"/>
+                                                    </td>
+                                                </t>
+
+                                                <!--FECHA COMP-->
+                                                <t t-if="retiva.retiva_partner_id.fecha_contabilizacion == 0">
+                                                    <td><p></p></td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td class="text-center">
+                                                       <span t-field="retiva.retiva_partner_id.fecha_contabilizacion"/>
+                                                    </td>
+                                                </t>
+                                              </t>
+                                            </t>
+
+                                            <t t-set="post_exectas" t-value="0"/>
+
+                                        </t>
+                                        <t t-elif="cont_16 == 1">
+                                            <!--Total compras con IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(tot_comp_p_iva_16)"/>
+                                            </td>
+
+                                           <!--Exentas-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                           <!--Exoneradas-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                           <!--Base Imponible-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(base_16)"/>
+                                            </td>
+
+                                           <!--% Alicuota-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(por_ali_16)"/>
+                                            </td>
+
+                                           <!--Impuesto IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(tax_16)"/>
+                                            </td>
+
+                                           <!--Retencion de IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(ret_16)"/>
+                                            </td>
+
+                                            <t t-foreach="o.retiva_ids" t-as="retiva">
+                                              <t t-if="retiva.invoice_id.id == factura.id">
+
+                                                <!--Nro COMPROBANTE DE RETENCION-->
+                                                <t t-if="retiva.retiva_partner_id.name == 0">
+                                                    <td><p></p></td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td class="text-center">
+                                                      <span t-field="retiva.retiva_partner_id.name"/>
+                                                    </td>
+                                                </t>
+
+                                                <!--FECHA COMP-->
+                                                <t t-if="retiva.retiva_partner_id.fecha_contabilizacion == 0">
+                                                    <td><p></p></td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td class="text-center">
+                                                       <span t-field="retiva.retiva_partner_id.fecha_contabilizacion"/>
+                                                    </td>
+                                                </t>
+
+                                              </t>
+                                            </t>
+
+                                            <t t-set="cont_16" t-value="0"/>
+
+                                        </t>
+                                        <t t-elif="cont_8 == 1">
+                                            <!--Total compras con IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(tot_comp_p_iva_8)"/>
+                                            </td>
+
+                                           <!--Exentas-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                           <!--Exoneradas-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                           <!--Base Imponible-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(base_8)"/>
+                                            </td>
+
+                                           <!--% Alicuota-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(por_ali_8)"/>
+                                            </td>
+
+                                           <!--Impuesto IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(tax_8)"/>
+                                            </td>
+
+                                           <!--Retencion de IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(ret_8)"/>
+                                            </td>
+
+                                            <t t-foreach="o.retiva_ids" t-as="retiva">
+                                              <t t-if="retiva.invoice_id.id == factura.id">
+
+                                                <!--Nro COMPROBANTE DE RETENCION-->
+                                                <t t-if="retiva.retiva_partner_id.name == 0">
+                                                    <td><p></p></td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td class="text-center">
+                                                      <span t-field="retiva.retiva_partner_id.name"/>
+                                                    </td>
+                                                </t>
+
+                                                <!--FECHA COMP-->
+                                                <t t-if="retiva.retiva_partner_id.fecha_contabilizacion == 0">
+                                                    <td><p></p></td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td class="text-center">
+                                                       <span t-field="retiva.retiva_partner_id.fecha_contabilizacion"/>
+                                                    </td>
+                                                </t>
+
+                                              </t>
+                                            </t>
+
+                                            <t t-set="cont_8" t-value="0"/>
+
+                                        </t>
+                                        <t t-elif="cont_31 == 1">
+                                            <!--Total compras con IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(tot_comp_p_iva_31)"/>
+                                            </td>
+
+                                           <!--Exentas-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                           <!--Exoneradas-->
+                                            <td class="text-center"> <p>0.00</p> </td>
+
+                                           <!--Base Imponible-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(base_31)"/>
+                                            </td>
+
+                                           <!--% Alicuota-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(por_ali_31)"/>
+                                            </td>
+
+                                           <!--Impuesto IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(tax_31)"/>
+                                            </td>
+
+                                           <!--% de Retencion de IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(por_reten_31)"/>
+                                            </td>
+
+                                           <!--Retencion de IVA-->
+                                            <td class="text-center">
+                                                <span t-esc="'%.2f'%(ret_31)"/>
+                                            </td>
+
+                                            <t t-foreach="o.retiva_ids" t-as="retiva">
+                                              <t t-if="retiva.invoice_id.id == factura.id">
+
+                                                <!--Nro COMPROBANTE DE RETENCION-->
+                                                <t t-if="retiva.retiva_partner_id.name == 0">
+                                                    <td><p></p></td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td class="text-center">
+                                                      <span t-field="retiva.retiva_partner_id.name"/>
+                                                    </td>
+                                                </t>
+
+                                                <!--FECHA COMP-->
+                                                <t t-if="retiva.retiva_partner_id.fecha_contabilizacion == 0">
+                                                    <td><p></p></td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td class="text-center">
+                                                       <span t-field="retiva.retiva_partner_id.fecha_contabilizacion"/>
+                                                    </td>
+                                                </t>
+
+                                              </t>
+                                            </t>
+
+                                            <t t-set="cont_31" t-value="0"/>
+                                        </t>
+
+                                   </tr>
+                               </t>
+
+
+                               <t t-set="contador" t-value="contador+1"/>
+                            <!--fin de condicion t-foreach="o.facturas_ids" t-as="factura-->
+                            </t>
+
+                              <tr class="text-center">
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th>Totales:</th>
+                                  <th><p> </p></th>
+                                  <th><p> </p></th>
+                                  <th><span t-esc="'%.2f'%(Total_con_IVA)"/></th> <!--TOTAL CON IVA  Total_con_IVA-->
+                                  <th><span t-esc="'%.2f'%(tot_exentas)"/></th> <!--EXENTAS  total_exentos-->
+                                  <th><span t-esc="'%.2f'%(ceros)"/></th> <!--EXONERADAS  0-->
+                                  <th><span t-esc="'%.2f'%(t_imponible)"/></th> <!--BASE IMPONIBLE  t_imponible-->
+                                  <th><p> </p></th>
+                                  <th><span t-esc="'%.2f'%(total_iva)"/></th> <!--IMPUESTO IVA  total_iva-->
+                                  <th><p> </p></th>
+                                  <th><span t-esc="'%.2f'%(reten_iva_total)"/></th> <!--IVA RETENIDO  reten_iva_total-->
+                              </tr>
+                          </tbody>
+                        </table>
+
+                                                <table class="table table-condensed">
+                          <thead>
+                            <tr class="text-center">
+                              <th></th>
+                              <th>Base Imponible</th>
+                              <th>Débito Fiscal</th>
+                              <th>Iva Retenido por Comp.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                          <td><p>Ventas de Exportación</p></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><p>Ventas Internas Afectadas sólo Alícuota General</p></td>
+                          <td><span t-esc="'%.2f'%(base_general)"/></td>
+                          <td><span t-esc="'%.2f'%(tax_general)"/></td>
+                          <td><span t-esc="'%.2f'%(ret_general)"/></td>
+                        </tr>
+                        <tr>
+                          <td><p>Ventas Internas Afectadas sólo Alícuota General + Adicional</p></td>
+                          <td><span t-esc="'%.2f'%(base_genel_mas_adicional)"/></td>
+                          <td><span t-esc="'%.2f'%(tax_genel_mas_adicional)"/></td>
+                          <td><span t-esc="'%.2f'%(ret_genel_mas_adicional)"/></td>
+                        </tr>
+                        <tr>
+                          <td><p>Ventas Internas Afectadas sólo Alícuota Reducida</p></td>
+                          <td><span t-esc="'%.2f'%(base_reducido)"/></td>
+                          <td><span t-esc="'%.2f'%(tax_reducido)"/></td>
+                          <td><span t-esc="'%.2f'%(ret_reducido)"/></td>
+                        </tr>
+                        <tr>
+                          <td><p>Ventas internas Exoneradas</p></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>Ventas Internas No Gravadas</td>
+                          <td><span t-esc="'%.2f'%(tot_exentas)"/></td>
+                          <td><p></p></td>
+                          <td><p></p></td>
+                        </tr>
+                        <!--RESULTADOS TOTALES-->
+                        <t t-set="t_base_imponibles" t-value="base_general+base_reducido+tot_exentas"/>
+                        <t t-set="t_debito_fiscal" t-value="tax_general+tax_reducido+tax_genel_mas_adicional"/>
+                        <t t-set="t_iva_retenido" t-value="ret_general+ret_reducido+ret_genel_mas_adicional"/>
+                        <tr>
+                          <td>Total</td>
+                          <td><span t-esc="'%.2f'%(t_base_imponibles)"/></td>
+                          <td><span t-esc="'%.2f'%(t_debito_fiscal)"/></td>
+                          <td><span t-esc="'%.2f'%(t_iva_retenido)"/></td>
+                        </tr>
+
+                        </tbody>
+                        </table>
+                      </div>
+
+                  </t>
+              </t>
+            </t>
+          </template>
+     </data>
+</odoo>

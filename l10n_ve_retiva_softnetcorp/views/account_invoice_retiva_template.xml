@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+<template id="report_invoice_retiva_document">
+    <t t-call="web.external_layout">
+        <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+        <div class="page">
+            <div class="oe_structure"/>
+            <div class="col-xs-12 mt32 mb32" t-attf-style="padding-left:0px; padding-right:0px; font-family:'Arial'; font-size:11px;">
+                <table class="table  table-condensed col-xs-4 pull-right" t-attf-style="color:#555555; font-family:'Arial'; font-size:11px; margin-top:10px;"   >
+                    <thead t-attf-style="background-color:#5f5d5e; page-break-inside: avoid; color:#ffffff; font-size:11px;">
+                        <th style="width:600px; padding: 0px 5px;background-color:#ffffff;color:#000000;">COMPROBANTE DE RETENCION DEL IMPUESTO AL VALOR AGREGADO</th>
+                        <th style="width:150px; padding: 0px 5px">0. Nro. Comprobante</th>
+                        <th style="width:150px; padding: 0px 5px">1. Fecha de Emisión</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" style="font-size:9px;">
+                                <span>PROVIDENCIA ADMINISTRATIVA No.SNA/2013/0030 DEL 20/05/2013</span>
+                            </td>
+                            <td><span t-field="o.number_retiva"/></td>
+                            <td><span t-field="o.date"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table  table-condensed" t-attf-style="color:#555555; font-family:'Arial'; font-size:11px;"   >
+                    <thead t-attf-style="background-color:#5f5d5e; page-break-inside: avoid; color:#ffffff; font-size:11px;">
+                        <th align="left" style="width:400px; padding: 0px 5px;">2. Nombre o Razon social del Agente de Retención</th>
+                        <th align="left" style="width:350px; padding: 0px 5px;">3. Registro de informacion fiscal del Agente de Retención</th>
+                        <th style="width:150px; padding: 0px 5px">4. Periodo Fiscal</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span t-field="o.user_id.company_id.display_name"/></td>
+                            <td><span t-field="o.user_id.company_id.vat"/></td>
+                            <t t-set="periodo_year" t-value="'%s'%o.date"/>
+                            <td><span t-esc="'AÑO:%s / MES:%s'%(periodo_year[0:4],periodo_year[5:7])"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table  table-condensed" t-attf-style="color:#555555; font-family:'Arial'; font-size:11px;"   >
+                    <thead t-attf-style="background-color:#5f5d5e; page-break-inside: avoid; color:#ffffff; font-size:11px;">
+                        <th align="left" style="width:900px; padding: 0px 5px">5. Direccón Fiscal del Agente de Retención</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <t t-set="address" t-value="'%s, %s, %s %s %s'%(o.company_id.partner_id.street,o.company_id.partner_id.street2,o.company_id.partner_id.city,o.company_id.partner_id.state_id.name, o.company_id.partner_id.country_id.name)"/>
+                            <td><span t-esc="address"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table  table-condensed" t-attf-style="color:#555555; font-family:'Arial'; font-size:11px;"   >
+                    <thead t-attf-style="background-color:#5f5d5e; page-break-inside: avoid; color:#ffffff; font-size:11px;">
+                        <th align="left" style="width:500px; padding: 0px 5px;">6. Nombre o Razon social del Agente de Retención</th>
+                        <th align="left" style="width:400px; padding: 0px 5px;">7. Registro de informacion fiscal del Agente de Retención</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span t-field="o.partner_id.name"/></td>
+                            <td><span t-field="o.partner_id.vat"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table  table-condensed" t-attf-style="color:#555555; font-family:'Arial'; font-size:11px;"   >
+                    <thead t-attf-style="background-color:#5f5d5e; page-break-inside: avoid; color:#ffffff; font-size:11px;">
+                        <th align="left" style="width:900px; padding: 0px 5px">8. Direccón Fiscal del Agente de Retención</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <t t-set="address" t-value="'%s, %s, %s %s %s'%(o.partner_id.street,o.partner_id.street2,o.partner_id.city,o.partner_id.state_id.name, o.partner_id.country_id.name)"/>
+                            <td>
+                                <span t-esc="address"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table class="table  table-condensed" t-attf-style="color:#555555; font-family:'Arial'; font-size:11px;">
+                <thead t-attf-style="background-color:#5f5d5e; page-break-inside: avoid; color:#ffffff; font-size:11px;">
+                    <tr>
+                        <th>Fecha Factura</th>
+                        <th>Numero de Factura o Nota de Débito</th>
+                        <th>Número de Control de la Factura o Nota de débito</th>
+                        <th>Número de Nota de Crédito</th>
+                        <th class="text-right">Monto Total de la Factura o Nota de Débito</th>
+                        <th class="text-right">Compras sin derecho a crédito fiscal</th>
+                        <th class="text-right">Base imponible</th>
+                        <th>% Alicuota</th>
+                        <th class="text-right">Impuesto Causado</th>
+                        <th class="text-right">% Ret I.V.A.</th>
+                        <th class="text-right">Impuesto Retenido</th>
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <tr t-attf-style="page-break-inside: avoid !important; font-size:11px;">
+                        <t t-set="exento" t-value="o.amount_total-o.amount_untaxed-o.amount_tax-o.amount_retiva"/>
+                        <t t-set="total" t-value="o.amount_untaxed+o.amount_tax+exento"/>
+                        <t t-set="alicuota" t-value="abs(o.amount_tax/o.amount_untaxed*100)"/>                      
+                        <t t-set="por_reten" t-value="o.retiva_id.porc_ret"/>
+                        <td><span t-field="o.date_invoice"/></td>
+                        <td>
+                            <t t-if="o.type=='in_invoice'">
+                                <span t-field="o.invoice_number"/>
+                            </t>
+                        </td>
+                        <td><span t-field="o.supplier_control_number"/></td>
+                        <td>
+                            <t t-if="o.type=='in_refund'">
+                                <span t-field="o.number"/>
+                            </t>
+                        </td>
+                        <td class="text-right" align="right">
+                            <span t-esc="'%.2f'%(total)"/>
+                        </td>
+                        <td class="text-right" align="right">
+                            <span t-esc="'%.2f'%(exento)"/>
+                        </td>
+                        <td class="text-right" align="right">
+                            <span t-esc="'%.2f'%(o.amount_untaxed)"/>
+                        </td>
+                        <td class="text-right" align="right">
+                            <span t-esc="'%.2f'%(alicuota)"/>
+                        </td>
+                        <td class="text-right" align="right">
+                            <span t-esc="'%.2f'%(o.amount_tax)"/>
+                        </td>
+                        <td class="text-right" align="right">
+                            <span t-esc="'%.2f'%(por_reten)"/>
+                        </td>
+                        <td class="text-right" align="right">
+                            <span t-esc="'%.2f'%(abs(o.amount_tax*(o.retiva_id.porc_ret/100)))"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <table  class="table  table-condensed" t-attf-style="color:#555555; font-family:'Arial'; font-size:11px;">
+                <tr class="border-black">
+                    <td align="right" style="width:8000px; padding: 0px 5px"><strong>Total Impuesto Retenido</strong></td>
+                    <td class="text-right" align="right" style="width:100px; padding: 0px 5px">
+                        <strong t-esc="'%.2f'%(abs(o.amount_tax*(o.retiva_id.porc_ret/100)))"/>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="row text-center" t-attf-style="font-family:'Arial'; font-size:11px;">
+                <p>
+                    <strong>(Ley IVA Art. 11: "La administración tributaria podrá designar como responsable del pago del impuesto, calida de</strong>
+                    <strong>agentes de retención a quienes pos sus funciones públicas o por razón de sus actividades privadas intervengan en</strong>
+                    <strong>operaciones gravadas con el impuesto establecido en esta ley")</strong>
+                </p>
+            </div>
+            <br/>
+            <br/>
+            <table style="font-family:'Arial'; font-size:9px;">
+                <tr>
+                    <td style="width:150px; padding: 0px 5px"/>
+                    <td class="text-center" colspan="6" style="border-top:1px solid black">
+                        <span>FIRMA AGENTE DE RETENCION</span>
+                    </td>
+                    <td style="width:150px; padding: 0px 5px"/>
+                    <td class="text-center" colspan="6" style="border-top:1px solid black">
+                        <span>FIRMA AGENTE DE RETENIDO</span>
+                        <br/>
+                        <span>FECHA DE ENTREGA:____/____/________</span>
+                        <br/>
+                        <span>MEDIO DE ENTREGA: Fisico ____ Electronico _____</span>
+                    </td>
+                    <td style="width:150px; padding: 0px 5px"/>
+                </tr>
+            </table>
+        </div>
+    </t>
+</template>
+
+<template id="report_invoice_retiva">
+   <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="l10n_ve_retiva_softnetcorp.report_invoice_retiva_document" t-lang="o.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+
+</data>
+</odoo>

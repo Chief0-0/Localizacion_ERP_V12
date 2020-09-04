@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_ve_retiva_user,l10n_ve_retiva_user,model_snc_retiva,account.group_account_user,1,1,1,1
+access_l10n_ve_retiva_partners_user,l10n_ve_retiva_partners_user,model_snc_retiva_partners,account.group_account_user,1,1,1,1
+access_l10n_ve_retiva_manager,l10n_ve_retiva_manager,model_snc_retiva,account.group_account_manager,1,1,1,1
+access_l10n_ve_retiva_partners_manager,l10n_ve_retiva_partners_manager,model_snc_retiva_partners,account.group_account_manager,1,1,1,1
+access_l10n_ve_retiva_invoice,l10n_ve_retiva_invoice,model_snc_retiva,account.group_account_invoice,1,1,1,1
+access_l10n_ve_retiva_partners_invoice,l10n_ve_retiva_partners_invoice,model_snc_retiva_partners,account.group_account_invoice,1,1,1,1

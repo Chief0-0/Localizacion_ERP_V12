@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_account_invoice_form_inherit_isrl" model="ir.ui.view">
+		    <field name="name">account.invoice.form.isrl.view</field>
+		    <field name="model">account.invoice</field>
+		    <field name="inherit_id" ref="account.invoice_supplier_form" />
+		    <field name="arch" type="xml">
+
+		    	<xpath expr="//field[@name='invoice_line_tax_ids']" position="after">
+		    		<field name="income_tax" widget="many2many_tags" domain="[('tax_group_id', '=', 'Withholdings'),
+                ('type_tax_use', '=', 'purchase')]" options="{'no_create': True}"/>
+		    	</xpath>
+
+		    	<!--xpath expr="//field[@name='invoice_line_tax_ids']" position="replace">
+		    		<field name="invoice_line_tax_ids" widget="many2many_tags" context="{'type':parent.type}" domain="[('type_tax_use','=','purchase'),('company_id', '=', parent.company_id),('tax_group_id', '!=', 'Withholdings')]" options="{'no_create': True}"/>
+		    	</xpath-->
+
+		    	<xpath expr="//field[@name='amount']" position="before">
+		    		<field name="subject_amount_total" />
+		    		<field name="subject_amount" invisible="1" />
+		    	</xpath>
+
+				<xpath expr="//field[@name='amount_tax']" position="after">
+					<field name="total_iva" readonly="1" class="oe_subtotal_footer_separator"/>
+					<field name="amount_retiva" readonly="1"/>
+		    	<field name="tax_withholdings" readonly="1"/>
+
+		    	</xpath>
+		    	<!--xpath expr="//field[@name='amount_tax']" position="replace">
+		    		<field name="amount_tax" invisible="1"/>
+		    		<field name="total_taxes" readonly="1"/>
+		    	</xpath-->
+
+		    	<xpath expr="//button[@name='action_invoice_draft']" position="after" >
+		    		<button name="print_isrl_retention" type="object" string="Imprimir Retención ISLR" icon="fa-print" attrs="{'invisible': [('state','not in',('open','in_payment','paid'))]}"/>
+		    	</xpath>
+
+			</field>
+		</record>
+
+		<record id="view_invoice_tax_form_inherit_isrl" model="ir.ui.view">
+		    <field name="name">view.invoice.tax.form.inherit.isrl</field>
+		    <field name="model">account.invoice.tax</field>
+		    <field name="inherit_id" ref="account.view_invoice_tax_form" />
+		    <field name="arch" type="xml">
+
+		    	<xpath expr="//field[@name='base']" position="replace">
+		    		<field name="subject_amount_total" />
+		    		<field name="subject_amount" invisible="1" />
+		    	</xpath>
+
+			</field>
+		</record>
+
+		<!--record id="view_account_invoice_form_inherit_retiva" model="ir.ui.view">
+		    <field name="name">view.account.invoice.form.inherit.retiva</field>
+		    <field name="model">account.invoice</field>
+		    <field name="inherit_id" ref="l10n_ve_retiva_softnetcorp.snc_account_invoice_form_view" />
+		    <field name="arch" type="xml">
+
+		    	<xpath expr="//field[@name='amount_retiva']" position="replace">
+
+		    	</xpath>
+
+			</field>
+		</record-->
+
+	</data>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<odoo>
+    	<data>
+			<record model="ir.sequence" id="sequence_invoice_id">
+			    <field name="name">Numero de control</field>
+			    <field name="code">invoice.number</field>
+			    <field name="prefix"></field>
+			    <field name="padding">5</field>
+			</record>
+		</data>
+	</odoo>

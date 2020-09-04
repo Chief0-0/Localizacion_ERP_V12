@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data noupdate="0">
+
+    <record id="group_l10n_ve_retiva_user" model="res.groups">
+        <field name="name">User Retenciones de IVA</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+    </record>
+
+    <record id="group_l10n_ve_retiva_manager" model="res.groups">
+        <field name="name">Manager Retenciones de IVA</field>
+        <field name="category_id" ref="base.module_category_accounting_and_finance"/>
+        <field name="implied_ids" eval="[(4, ref('group_l10n_ve_retiva_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>       
+
+</data>
+</openerp>

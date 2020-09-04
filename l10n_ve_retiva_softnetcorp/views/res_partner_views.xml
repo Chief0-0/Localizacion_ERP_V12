@@ -1,0 +1,19 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="snc_res_partner_form_view">
+      <field name="name">snc.res.partner.form.view</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="account.view_partner_property_form"/>
+      <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='property_account_position_id']" position="before">
+          <field name="retiva_id"/>
+        </xpath>
+      </data>
+      </field>
+    </record>
+
+  </data>
+</odoo>
